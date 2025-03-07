@@ -19,6 +19,7 @@ export const GlobalProvider = ({ children }) => {
 
   const logoutWebsite = () => {
     setIsLoggedIn(false);
+    localStorage.clear();
   };
 
   const toggleDarkMode = () => {

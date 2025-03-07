@@ -73,6 +73,7 @@ const Dashboard = () => {
             Start Date
           </label>
           <input
+            placeholder="Select Start Date"
             type="date"
             value={startDate}
             className="min-w-80 border p-2 rounded-md   dark:text-white border-gray-400 dark:border-gray-100 flex-1 scroll-smooth"

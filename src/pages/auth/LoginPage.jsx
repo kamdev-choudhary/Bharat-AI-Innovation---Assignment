@@ -33,14 +33,14 @@ const LoginPage = () => {
     <div className="flex justify-center w-[100vw]  h-[100vh] items-center">
       <form
         onSubmit={handleLogin}
-        className="bg-[#f1f3fb] h-auto p-4 rounded-2xl max-w-120 w-full gap-4 flex flex-col py-10"
+        className="bg-[#f1f3fb] dark:bg-gray-600 h-auto p-4 rounded-2xl max-w-90 w-full gap-4 flex flex-col py-10"
       >
         <div className="flex justify-center">
-          <p className="text-2xl">Login Page</p>
+          <p className="text-2xl dark:text-white">Login Page</p>
         </div>
         <hr className="border-gray-400" />
         <input
-          className="border p-2 w-full rounded-l"
+          className="border p-2 w-full rounded-l dark:text-white dark:border-white"
           placeholder="User ID"
           value={userId}
           onChange={(e) => {
@@ -51,7 +51,7 @@ const LoginPage = () => {
           }}
         />
         <input
-          className="border p-2 w-full rounded-l"
+          className="border p-2 w-full rounded-l dark:text-white dark:border-white "
           placeholder="Password"
           value={password}
           onChange={(e) => {
@@ -61,6 +61,7 @@ const LoginPage = () => {
             }
           }}
           type={showPassword ? "text" : "password"}
+          autoComplete="password"
         />
         <div className="flex gap-3">
           <input
@@ -69,7 +70,9 @@ const LoginPage = () => {
             type="checkbox"
             id="showpassword-checkbox"
           />
-          <label htmlFor="showpassword-checkbox">Show Password</label>
+          <label className="dark:text-white" htmlFor="showpassword-checkbox">
+            Show Password
+          </label>
         </div>
         {error && <p className="text-red-500">{error}</p>}
         <button
