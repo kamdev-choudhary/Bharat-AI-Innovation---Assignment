@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "date": "2024-01-02",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 4543,
+    "units_sold": 16,
+    "region": "South America"
+  },
+  {
+    "id": 2,
+    "date": "2024-01-03",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 503,
+    "units_sold": 1,
+    "region": "Australia"
+  },
+  {
+    "id": 3,
+    "date": "2024-01-04",
+    "product": "Headphones",
+    "category": "Accessories",
+    "sales": 1769,
+    "units_sold": 7,
+    "region": "South America"
+  },
+  {
+    "id": 4,
+    "date": "2024-01-05",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 3905,
+    "units_sold": 13,
+    "region": "Asia"
+  },
+  {
+    "id": 5,
+    "date": "2024-01-06",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 4221,
+    "units_sold": 4,
+    "region": "Australia"
+  },
+  {
+    "id": 6,
+    "date": "2024-01-07",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 2035,
+    "units_sold": 18,
+    "region": "South America"
+  },
+  {
+    "id": 7,
+    "date": "2024-01-08",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 3443,
+    "units_sold": 18,
+    "region": "North America"
+  },
+  {
+    "id": 8,
+    "date": "2024-01-09",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 4569,
+    "units_sold": 4,
+    "region": "Australia"
+  },
+  {
+    "id": 9,
+    "date": "2024-01-10",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 962,
+    "units_sold": 5,
+    "region": "Africa"
+  },
+  {
+    "id": 10,
+    "date": "2024-01-11",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 2768,
+    "units_sold": 9,
+    "region": "Europe"
+  },
+  {
+    "id": 11,
+    "date": "2024-01-12",
+    "product": "Washing Machine",
+    "category": "Home Appliances",
+    "sales": 1102,
+    "units_sold": 6,
+    "region": "Asia"
+  },
+  {
+    "id": 12,
+    "date": "2024-01-13",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 4096,
+    "units_sold": 13,
+    "region": "Africa"
+  },
+  {
+    "id": 13,
+    "date": "2024-01-14",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 2176,
+    "units_sold": 2,
+    "region": "Europe"
+  },
+  {
+    "id": 14,
+    "date": "2024-01-15",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 1282,
+    "units_sold": 11,
+    "region": "Asia"
+  },
+  {
+    "id": 15,
+    "date": "2024-01-16",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 3832,
+    "units_sold": 6,
+    "region": "Europe"
+  },
+  {
+    "id": 16,
+    "date": "2024-01-17",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 964,
+    "units_sold": 5,
+    "region": "North America"
+  },
+  {
+    "id": 17,
+    "date": "2024-01-18",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 804,
+    "units_sold": 18,
+    "region": "Europe"
+  },
+  {
+    "id": 18,
+    "date": "2024-01-19",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 4534,
+    "units_sold": 5,
+    "region": "Africa"
+  },
+  {
+    "id": 19,
+    "date": "2024-01-20",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 4420,
+    "units_sold": 20,
+    "region": "North America"
+  },
+  {
+    "id": 20,
+    "date": "2024-01-21",
+    "product": "Keyboard",
+    "category": "Accessories",
+    "sales": 2444,
+    "units_sold": 3,
+    "region": "Asia"
+  },
+  {
+    "id": 21,
+    "date": "2024-01-22",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 4232,
+    "units_sold": 3,
+    "region": "Africa"
+  },
+  {
+    "id": 22,
+    "date": "2024-01-23",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 4288,
+    "units_sold": 17,
+    "region": "Europe"
+  },
+  {
+    "id": 23,
+    "date": "2024-01-24",
+    "product": "Charger",
+    "category": "Accessories",
+    "sales": 4691,
+    "units_sold": 6,
+    "region": "Australia"
+  },
+  {
+    "id": 24,
+    "date": "2024-01-25",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 725,
+    "units_sold": 6,
+    "region": "Africa"
+  },
+  {
+    "id": 25,
+    "date": "2024-01-26",
+    "product": "Refrigerator",
+    "category": "Home Appliances",
+    "sales": 3743,
+    "units_sold": 16,
+    "region": "Europe"
+  },
+  {
+    "id": 26,
+    "date": "2024-01-27",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 4107,
+    "units_sold": 6,
+    "region": "North America"
+  },
+  {
+    "id": 27,
+    "date": "2024-01-28",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 3200,
+    "units_sold": 17,
+    "region": "Asia"
+  },
+  {
+    "id": 28,
+    "date": "2024-01-29",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 3738,
+    "units_sold": 15,
+    "region": "Asia"
+  },
+  {
+    "id": 29,
+    "date": "2024-01-30",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 2241,
+    "units_sold": 20,
+    "region": "Asia"
+  },
+  {
+    "id": 30,
+    "date": "2024-01-01",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 3025,
+    "units_sold": 19,
+    "region": "Europe"
+  },
+  {
+    "id": 31,
+    "date": "2024-01-02",
+    "product": "Laptop",
+    "category": "Electronics",
+    "sales": 2013,
+    "units_sold": 11,
+    "region": "Asia"
+  },
+  {
+    "id": 32,
+    "date": "2024-01-03",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 4891,
+    "units_sold": 12,
+    "region": "North America"
+  },
+  {
+    "id": 33,
+    "date": "2024-01-04",
+    "product": "Keyboard",
+    "category": "Accessories",
+    "sales": 4801,
+    "units_sold": 20,
+    "region": "Australia"
+  },
+  {
+    "id": 34,
+    "date": "2024-01-05",
+    "product": "Drone",
+    "category": "Photography",
+    "sales": 1341,
+    "units_sold": 7,
+    "region": "North America"
+  },
+  {
+    "id": 35,
+    "date": "2024-01-06",
+    "product": "Mouse",
+    "category": "Accessories",
+    "sales": 509,
+    "units_sold": 20,
+    "region": "Africa"
+  },
+  {
+    "id": 36,
+    "date": "2024-01-07",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 4519,
+    "units_sold": 5,
+    "region": "Europe"
+  },
+  {
+    "id": 37,
+    "date": "2024-01-08",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 4792,
+    "units_sold": 12,
+    "region": "South America"
+  },
+  {
+    "id": 38,
+    "date": "2024-01-09",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 4442,
+    "units_sold": 16,
+    "region": "North America"
+  },
+  {
+    "id": 39,
+    "date": "2024-01-10",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 3135,
+    "units_sold": 15,
+    "region": "South America"
+  },
+  {
+    "id": 40,
+    "date": "2024-01-11",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 1881,
+    "units_sold": 13,
+    "region": "North America"
+  },
+  {
+    "id": 41,
+    "date": "2024-01-12",
+    "product": "Refrigerator",
+    "category": "Home Appliances",
+    "sales": 3096,
+    "units_sold": 20,
+    "region": "Europe"
+  },
+  {
+    "id": 42,
+    "date": "2024-01-13",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 3364,
+    "units_sold": 13,
+    "region": "South America"
+  },
+  {
+    "id": 43,
+    "date": "2024-01-14",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 1898,
+    "units_sold": 14,
+    "region": "North America"
+  },
+  {
+    "id": 44,
+    "date": "2024-01-15",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 4896,
+    "units_sold": 7,
+    "region": "North America"
+  },
+  {
+    "id": 45,
+    "date": "2024-01-16",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 3029,
+    "units_sold": 15,
+    "region": "Europe"
+  },
+  {
+    "id": 46,
+    "date": "2024-01-17",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 4364,
+    "units_sold": 18,
+    "region": "Africa"
+  },
+  {
+    "id": 47,
+    "date": "2024-01-18",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 1723,
+    "units_sold": 11,
+    "region": "Europe"
+  },
+  {
+    "id": 48,
+    "date": "2024-01-19",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 2848,
+    "units_sold": 18,
+    "region": "North America"
+  },
+  {
+    "id": 49,
+    "date": "2024-01-20",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 3900,
+    "units_sold": 16,
+    "region": "Australia"
+  },
+  {
+    "id": 50,
+    "date": "2024-01-21",
+    "product": "Laptop",
+    "category": "Electronics",
+    "sales": 2225,
+    "units_sold": 5,
+    "region": "Africa"
+  },
+  {
+    "id": 51,
+    "date": "2024-01-22",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 1948,
+    "units_sold": 13,
+    "region": "North America"
+  },
+  {
+    "id": 52,
+    "date": "2024-01-23",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 3270,
+    "units_sold": 18,
+    "region": "South America"
+  },
+  {
+    "id": 53,
+    "date": "2024-01-24",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 975,
+    "units_sold": 4,
+    "region": "Africa"
+  },
+  {
+    "id": 54,
+    "date": "2024-01-25",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 4135,
+    "units_sold": 9,
+    "region": "South America"
+  },
+  {
+    "id": 55,
+    "date": "2024-01-26",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 2731,
+    "units_sold": 8,
+    "region": "South America"
+  },
+  {
+    "id": 56,
+    "date": "2024-01-27",
+    "product": "Headphones",
+    "category": "Accessories",
+    "sales": 3033,
+    "units_sold": 6,
+    "region": "Asia"
+  },
+  {
+    "id": 57,
+    "date": "2024-01-28",
+    "product": "Charger",
+    "category": "Accessories",
+    "sales": 1549,
+    "units_sold": 20,
+    "region": "Australia"
+  },
+  {
+    "id": 58,
+    "date": "2024-01-29",
+    "product": "Monitor",
+    "category": "Electronics",
+    "sales": 4607,
+    "units_sold": 14,
+    "region": "Asia"
+  },
+  {
+    "id": 59,
+    "date": "2024-01-30",
+    "product": "Refrigerator",
+    "category": "Home Appliances",
+    "sales": 3625,
+    "units_sold": 11,
+    "region": "Africa"
+  },
+  {
+    "id": 60,
+    "date": "2024-01-01",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 3305,
+    "units_sold": 19,
+    "region": "Europe"
+  },
+  {
+    "id": 61,
+    "date": "2024-01-02",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 4283,
+    "units_sold": 1,
+    "region": "Africa"
+  },
+  {
+    "id": 62,
+    "date": "2024-01-03",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 3603,
+    "units_sold": 13,
+    "region": "South America"
+  },
+  {
+    "id": 63,
+    "date": "2024-01-04",
+    "product": "Microwave",
+    "category": "Home Appliances",
+    "sales": 799,
+    "units_sold": 6,
+    "region": "South America"
+  },
+  {
+    "id": 64,
+    "date": "2024-01-05",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 3041,
+    "units_sold": 8,
+    "region": "South America"
+  },
+  {
+    "id": 65,
+    "date": "2024-01-06",
+    "product": "Mouse",
+    "category": "Accessories",
+    "sales": 2118,
+    "units_sold": 6,
+    "region": "North America"
+  },
+  {
+    "id": 66,
+    "date": "2024-01-07",
+    "product": "Washing Machine",
+    "category": "Home Appliances",
+    "sales": 4341,
+    "units_sold": 13,
+    "region": "Europe"
+  },
+  {
+    "id": 67,
+    "date": "2024-01-08",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 2508,
+    "units_sold": 1,
+    "region": "Africa"
+  },
+  {
+    "id": 68,
+    "date": "2024-01-09",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 4315,
+    "units_sold": 1,
+    "region": "Africa"
+  },
+  {
+    "id": 69,
+    "date": "2024-01-10",
+    "product": "Monitor",
+    "category": "Electronics",
+    "sales": 3506,
+    "units_sold": 12,
+    "region": "Asia"
+  },
+  {
+    "id": 70,
+    "date": "2024-01-11",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 4145,
+    "units_sold": 15,
+    "region": "Asia"
+  },
+  {
+    "id": 71,
+    "date": "2024-01-12",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 4602,
+    "units_sold": 6,
+    "region": "Australia"
+  },
+  {
+    "id": 72,
+    "date": "2024-01-13",
+    "product": "Laptop",
+    "category": "Electronics",
+    "sales": 4570,
+    "units_sold": 17,
+    "region": "Australia"
+  },
+  {
+    "id": 73,
+    "date": "2024-01-14",
+    "product": "Air Purifier",
+    "category": "Home Appliances",
+    "sales": 1383,
+    "units_sold": 8,
+    "region": "Asia"
+  },
+  {
+    "id": 74,
+    "date": "2024-01-15",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 4633,
+    "units_sold": 17,
+    "region": "South America"
+  },
+  {
+    "id": 75,
+    "date": "2024-01-16",
+    "product": "Headphones",
+    "category": "Accessories",
+    "sales": 3684,
+    "units_sold": 9,
+    "region": "Africa"
+  },
+  {
+    "id": 76,
+    "date": "2024-01-17",
+    "product": "Drone",
+    "category": "Photography",
+    "sales": 1680,
+    "units_sold": 16,
+    "region": "North America"
+  },
+  {
+    "id": 77,
+    "date": "2024-01-18",
+    "product": "Camera",
+    "category": "Photography",
+    "sales": 1982,
+    "units_sold": 18,
+    "region": "Europe"
+  },
+  {
+    "id": 78,
+    "date": "2024-01-19",
+    "product": "Microwave",
+    "category": "Home Appliances",
+    "sales": 2274,
+    "units_sold": 7,
+    "region": "Australia"
+  },
+  {
+    "id": 79,
+    "date": "2024-01-20",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 951,
+    "units_sold": 19,
+    "region": "South America"
+  },
+  {
+    "id": 80,
+    "date": "2024-01-21",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 527,
+    "units_sold": 17,
+    "region": "Australia"
+  },
+  {
+    "id": 81,
+    "date": "2024-01-22",
+    "product": "Drone",
+    "category": "Photography",
+    "sales": 4944,
+    "units_sold": 20,
+    "region": "Australia"
+  },
+  {
+    "id": 82,
+    "date": "2024-01-23",
+    "product": "Laptop",
+    "category": "Electronics",
+    "sales": 2592,
+    "units_sold": 1,
+    "region": "South America"
+  },
+  {
+    "id": 83,
+    "date": "2024-01-24",
+    "product": "Tablet",
+    "category": "Electronics",
+    "sales": 2640,
+    "units_sold": 17,
+    "region": "North America"
+  },
+  {
+    "id": 84,
+    "date": "2024-01-25",
+    "product": "Headphones",
+    "category": "Accessories",
+    "sales": 4301,
+    "units_sold": 15,
+    "region": "Australia"
+  },
+  {
+    "id": 85,
+    "date": "2024-01-26",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 619,
+    "units_sold": 3,
+    "region": "Africa"
+  },
+  {
+    "id": 86,
+    "date": "2024-01-27",
+    "product": "Refrigerator",
+    "category": "Home Appliances",
+    "sales": 4385,
+    "units_sold": 7,
+    "region": "Asia"
+  },
+  {
+    "id": 87,
+    "date": "2024-01-28",
+    "product": "Refrigerator",
+    "category": "Home Appliances",
+    "sales": 1730,
+    "units_sold": 7,
+    "region": "Africa"
+  },
+  {
+    "id": 88,
+    "date": "2024-01-29",
+    "product": "Drone",
+    "category": "Photography",
+    "sales": 2316,
+    "units_sold": 12,
+    "region": "Asia"
+  },
+  {
+    "id": 89,
+    "date": "2024-01-30",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 2395,
+    "units_sold": 18,
+    "region": "Europe"
+  },
+  {
+    "id": 90,
+    "date": "2024-01-01",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 4723,
+    "units_sold": 3,
+    "region": "Africa"
+  },
+  {
+    "id": 91,
+    "date": "2024-01-02",
+    "product": "Tripod",
+    "category": "Photography",
+    "sales": 2478,
+    "units_sold": 4,
+    "region": "Australia"
+  },
+  {
+    "id": 92,
+    "date": "2024-01-03",
+    "product": "Monitor",
+    "category": "Electronics",
+    "sales": 4126,
+    "units_sold": 5,
+    "region": "Asia"
+  },
+  {
+    "id": 93,
+    "date": "2024-01-04",
+    "product": "Smartphone",
+    "category": "Electronics",
+    "sales": 573,
+    "units_sold": 11,
+    "region": "Asia"
+  },
+  {
+    "id": 94,
+    "date": "2024-01-05",
+    "product": "Smartwatch",
+    "category": "Wearables",
+    "sales": 4728,
+    "units_sold": 4,
+    "region": "Australia"
+  },
+  {
+    "id": 95,
+    "date": "2024-01-06",
+    "product": "Drone",
+    "category": "Photography",
+    "sales": 3555,
+    "units_sold": 12,
+    "region": "North America"
+  },
+  {
+    "id": 96,
+    "date": "2024-01-07",
+    "product": "Gaming Console",
+    "category": "Gaming",
+    "sales": 1481,
+    "units_sold": 9,
+    "region": "Australia"
+  },
+  {
+    "id": 97,
+    "date": "2024-01-08",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 2845,
+    "units_sold": 12,
+    "region": "Asia"
+  },
+  {
+    "id": 98,
+    "date": "2024-01-09",
+    "product": "Microwave",
+    "category": "Home Appliances",
+    "sales": 4567,
+    "units_sold": 17,
+    "region": "North America"
+  },
+  {
+    "id": 99,
+    "date": "2024-01-10",
+    "product": "VR Headset",
+    "category": "Gaming",
+    "sales": 4777,
+    "units_sold": 6,
+    "region": "Asia"
+  },
+  {
+    "id": 100,
+    "date": "2024-01-11",
+    "product": "Fitness Band",
+    "category": "Wearables",
+    "sales": 1517,
+    "units_sold": 20,
+    "region": "North America"
+  }
+]
