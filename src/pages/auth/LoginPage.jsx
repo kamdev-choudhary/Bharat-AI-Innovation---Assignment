@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 const LoginPage = () => {
-  const { setIsLoggedIn } = useGlobalContext();
+  const { loginWebsite } = useGlobalContext();
   const [userId, setuserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ const LoginPage = () => {
       setLoading(true);
 
       if (userId === "admin" && password === "admin") {
-        setIsLoggedIn(true);
+        loginWebsite();
       } else {
         setError("ID or Password Incorrect.");
       }
