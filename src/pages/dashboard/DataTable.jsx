@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const DataTable = ({ data, selectedMetrics }) => {
   return (
@@ -33,22 +34,26 @@ const DataTable = ({ data, selectedMetrics }) => {
             </tr>
           ) : (
             data?.map((d, index) => (
-              <tr
+              <motion.tr
+                initial={{ opacity: 0, x: 10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+                animate={{ animation: "smooth" }}
                 key={index}
-                className=" dark:even:border-y-gray-800 hover:bg-blue-100 dark:hover:bg-gray-800 transition duration-200"
+                className="dark:even:border-y-gray-800 hover:bg-blue-100 dark:hover:bg-gray-800 transition duration-200"
               >
-                <td className="p-3 border border-gray-300 text-center dark:text-white">
+                <motion.td className="p-3 border border-gray-300 text-center dark:text-white">
                   {index + 1}
-                </td>
-                <td className="p-3 border border-gray-300  dark:border-gray-50 dark:text-white">
+                </motion.td>
+                <motion.td className="p-3 border border-gray-300  dark:border-gray-50 dark:text-white">
                   {d?.metric}
-                </td>
+                </motion.td>
                 {selectedMetrics?.map((mat) => (
-                  <td className="p-3 border border-gray-300 text-center dark:text-white">
+                  <motion.td className="p-3 border border-gray-300 text-center dark:text-white">
                     {d?.[`${mat}_sum`]}
-                  </td>
+                  </motion.td>
                 ))}
-              </tr>
+              </motion.tr>
             ))
           )}
         </tbody>

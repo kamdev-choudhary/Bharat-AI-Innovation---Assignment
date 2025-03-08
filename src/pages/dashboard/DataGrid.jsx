@@ -4,6 +4,7 @@ import BarChart from "./charts/BarChart";
 import LineAndAreaChart from "./charts/LineAndAreaChart";
 import PieChart from "./charts/PieChart";
 import DataTable from "./DataTable";
+import { AnimatePresence, motion } from "framer-motion";
 
 const COLORS = [
   "#0088FE",
@@ -26,7 +27,7 @@ const dimentions = ["product", "category", "region", "date"];
 
 const chartTypes = ["bar", "line", "area", "pie"];
 
-const Selection = ({
+const FilterSelector = ({
   title = "title",
   selectedItems = [],
   setSelectedItem,
@@ -41,7 +42,11 @@ const Selection = ({
             className="p-2  flex gap-4 dark:text-white w-full justify-between bg-gray-300 dark:bg-gray-600 mb-3 rounded-md"
             key={item}
           >
-            <p>{item}</p>
+            <p>
+              {item
+                ?.split("_")
+                ?.map((it) => it?.charAt(0).toUpperCase() + it?.slice(1) + " ")}
+            </p>
             <CancelRounded
               onClick={() =>
                 setSelectedItem((prev) => prev?.filter((mat) => mat !== item))
@@ -70,7 +75,11 @@ const Selection = ({
             ?.filter((mat) => !selectedItems.includes(mat))
             .map((item, index) => (
               <option key={index} value={item}>
-                {item}
+                {item
+                  ?.split("_")
+                  ?.map(
+                    (it) => it?.charAt(0)?.toUpperCase() + it?.slice(1) + " "
+                  )}
               </option>
             ))}
         </select>
@@ -152,62 +161,93 @@ const DataGrid = ({ data }) => {
   };
 
   return (
-    <div className="p-3">
+    <div className="px-3">
       {/* Render Selected Chart */}
       <div className="mt-5 flex flex-wrap w-full">
         <div className="flex-2/3 justify-start min-w-80 flex flex-col gap-3">
-          <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white  rounded-md mb-2">
-            {["chart", "table"].map((key, index) => (
-              <button
-                key={index}
-                className={`first:rounded-tl-md flex-1 p-2 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
-                  dataVisibleType === key
-                    ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
-                    : ""
-                }`}
-                onClick={() => setDataVisibleType(key)}
-              >
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </button>
-            ))}
-          </div>
-
-          {/* Chart Type Selection Buttons */}
-          {dataVisibleType === "chart" ? (
+          {groupedData.length !== 0 && (
             <>
-              <div className="dark:text-white w-fit border rounded-md ">
-                {chartTypes?.map((type, index) => (
+              <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white  rounded-md mb-2">
+                {["chart", "table"].map((key, index) => (
                   <button
-                    className={`${
-                      type === selectedChartType
-                        ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
-                        : ""
-                    } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
                     key={index}
-                    onClick={() => setSelectedChartType(type)}
+                    className={`first:rounded-tl-md flex-1 p-2 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
+                      dataVisibleType === key
+                        ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
+                        : ""
+                    }`}
+                    onClick={() => setDataVisibleType(key)}
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
                   </button>
                 ))}
               </div>
-              <div className="max-h-100 flex justify-center">
-                {RenderElement[selectedChartType]}
-              </div>
+
+              {/* Chart Type Selector Buttons */}
+              {dataVisibleType === "chart" ? (
+                <>
+                  <div className="dark:text-white w-fit border rounded-md ">
+                    {chartTypes?.map((type, index) => (
+                      <button
+                        className={`${
+                          type === selectedChartType
+                            ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
+                            : ""
+                        } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
+                        key={index}
+                        onClick={() => setSelectedChartType(type)}
+                      >
+                        {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                  <div id="chart">
+                    <AnimatePresence mode="wait">
+                      {RenderElement[selectedChartType] && (
+                        <motion.div
+                          key={selectedChartType} // Important: Ensures re-mounting on change
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.3 }}
+                          className="max-h-150 flex justify-center"
+                        >
+                          {RenderElement[selectedChartType]}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                    ;
+                  </div>
+                </>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedChartType} // Important: Ensures re-mounting on change
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <DataTable
+                      data={groupedData}
+                      selectedMetrics={selectedMetrics}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              )}
             </>
-          ) : (
-            <DataTable data={groupedData} selectedMetrics={selectedMetrics} />
           )}
         </div>
 
         <div className="flex-1/3 p-2 flex flex-col w-[100%] gap-4 md:px-10">
-          <Selection
+          <FilterSelector
             title="Metrics"
             selectedItems={selectedMetrics}
             items={metrics}
             setSelectedItem={setSelectedMetrics}
           />
 
-          <Selection
+          <FilterSelector
             title="Dimentions"
             selectedItems={selectedDimentions}
             items={dimentions}

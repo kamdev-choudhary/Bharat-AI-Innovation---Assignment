@@ -1,68 +1,89 @@
 import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 /**
- * Captures an HTML element and saves it as a PNG image with padding.
+ * Captures an HTML element and saves it as a PNG or PDF.
  * @param elementId The ID of the HTML element to capture.
- * @param filename The name of the downloaded PNG file.
- * @param padding The amount of padding (in pixels).
+ * @param filename The name of the downloaded file.
+ * @param format "png" or "pdf" (default: "png").
  */
 
-export const captureElementAsPNG = async ({
-  elementId,
-  filename = "captured-image.png",
-  padding = 8,
-  hiddenSelectors = [],
-  download = true,
-}) => {
-  const element = document.getElementById(elementId);
-  if (!element) {
-    console.error(`Element with ID '${elementId}' not found.`);
-    return;
+function replaceOklchWithRGB(element) {
+  const styles = window.getComputedStyle(element);
+  const bgColor = styles.backgroundColor;
+
+  if (bgColor.includes("oklch")) {
+    element.style.backgroundColor = "rgb(255, 255, 255)"; // Replace with white or another color
   }
 
-  try {
-    const clonedElement = element.cloneNode(true);
+  for (const child of element.children) {
+    replaceOklchWithRGB(child); // Recursively fix child elements
+  }
+}
 
-    hiddenSelectors.forEach((selector) => {
-      const elementsToHide = clonedElement.querySelectorAll(selector);
-      elementsToHide.forEach((el) => {
-        el.style.display = "none";
-      });
+const waitForElement = async (id, timeout = 5000) => {
+  const startTime = Date.now();
+  while (!document.getElementById(id)) {
+    if (Date.now() - startTime > timeout) {
+      console.error(`Timeout: Element with ID '${id}' not found.`);
+      return null;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Wait 100ms
+  }
+  return document.getElementById(id);
+};
+
+export const captureElement = async ({
+  elementId,
+  filename = "captured",
+  format = "png", // "png" or "pdf"
+  download = true,
+}) => {
+  const element = await waitForElement(elementId);
+  if (!element) return; // Stop if element is still not found
+
+  replaceOklchWithRGB(element);
+
+  try {
+    const canvas = await html2canvas(element, {
+      useCORS: true,
+      scale: 2,
     });
 
-    const wrapper = document.createElement("div");
-    wrapper.style.padding = `${padding}px`;
-    wrapper.style.backgroundColor = "transparent";
-    wrapper.style.display = "inline-block";
-    wrapper.appendChild(clonedElement);
-
-    document.body.appendChild(wrapper);
-
-    const canvas = await html2canvas(wrapper);
-
-    document.body.removeChild(wrapper);
-
-    // 📌 Copy to clipboard
-    if (navigator.clipboard) {
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const item = new ClipboardItem({ "image/png": blob });
-          navigator.clipboard.write([item]);
-        }
-      });
-    } else {
-      console.warn("Clipboard API not supported.");
-    }
-
-    // Convert to image and trigger download
-    if (download) {
+    if (format === "png") {
       const image = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+
+      if (navigator.clipboard) {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const item = new ClipboardItem({ "image/png": blob });
+            navigator.clipboard.write([item]);
+          }
+        });
+      } else {
+        console.warn("Clipboard API not supported.");
+      }
+
+      if (download) {
+        const link = document.createElement("a");
+        link.href = image;
+        link.download = `${filename}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } else if (format === "pdf") {
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgData = canvas.toDataURL("image/png");
+
+      const imgWidth = 200; // A4 width in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 5, 5, imgWidth, imgHeight);
+
+      if (download) {
+        pdf.save(`${filename}.pdf`);
+      }
     }
   } catch (error) {
     console.error("Error capturing element:", error);
