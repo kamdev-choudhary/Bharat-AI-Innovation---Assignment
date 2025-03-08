@@ -7,8 +7,10 @@ import DataChart from "./DataChart";
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const [dataVisibleType, setDataVisibleType] = useState("chart");
+
   //   Selected
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -16,22 +18,26 @@ const Dashboard = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
 
   const categories = useMemo(
-    () => [...new Set(data.map((d) => d.category))],
-    [data]
-  );
-  const regions = useMemo(
-    () => [...new Set(data.map((d) => d.region))],
+    () => (data ? [...new Set(data?.map((d) => d.category))] : []),
     [data]
   );
 
+  const regions = useMemo(
+    () => (data ? [...new Set(data?.map((d) => d.region))] : []),
+    [data]
+  );
+
+  // Mimic fetch api using Axios
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        if (error) setError("");
         const response = await axios.get("./sales_data.json");
         if (response.status === 200) {
           setData(response.data);
         } else {
+          setError("Error Fetching data");
         }
       } catch (error) {
         console.error(error);
@@ -67,7 +73,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar />
-      <div className=" flex gap-2 flex-wrap p-3">
+      <div className=" flex gap-2 flex-wrap p-3 ">
         <div className="flex flex-col">
           <label htmlFor="endDate" className="dark:text-white">
             Start Date
@@ -137,13 +143,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white m-3 rounded-md">
+      <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white m-3 rounded-md p-2">
         {["chart", "table"].map((key, index) => (
           <button
             key={index}
             className={` first:rounded-tl-md flex-1 p-3 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
               dataVisibleType === key
-                ? "bg-black font-bold dark:bg-gray-800"
+                ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
                 : ""
             }`}
             onClick={() => setDataVisibleType(key)}
@@ -155,7 +161,11 @@ const Dashboard = () => {
       {loading ? (
         <div className="flex justify-center p-3">Loading Data....</div>
       ) : data.length === 0 ? (
-        <div>No Data Found</div>
+        error ? (
+          <p>{error}</p>
+        ) : (
+          <p>No Data Found</p>
+        )
       ) : (
         <>
           {dataVisibleType === "table" && <DataTable data={filteredData} />}
