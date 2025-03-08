@@ -187,7 +187,7 @@ const DataGrid = ({ data }) => {
               {/* Chart Type Selector Buttons */}
               {dataVisibleType === "chart" ? (
                 <>
-                  <div className="flex justify-between w-full">
+                  <div className="flex justify-between w-full flex-wrap gap-2">
                     <div className="dark:text-white w-fit border rounded-md ">
                       {chartTypes?.map((type, index) => (
                         <button
