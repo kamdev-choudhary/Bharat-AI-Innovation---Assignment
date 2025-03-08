@@ -1,19 +1,18 @@
 import React from "react";
 
-const DataTable = ({ data }) => {
+const DataTable = ({ data, selectedMetrics }) => {
+  console.log(data);
   return (
-    <div className="overflow-x-auto p-3">
+    <div className="overflow-x-auto">
       <table className="min-w-full border-collapse border border-gray-300 shadow-md rounded-lg">
         {/* Table Head */}
         <thead className="bg-blue-600 text-white sticky top-0">
           <tr>
             <th className="p-3 border border-gray-300">SN</th>
             <th className="p-3 border border-gray-300">Category</th>
-            <th className="p-3 border border-gray-300">Date</th>
-            <th className="p-3 border border-gray-300">Product</th>
-            <th className="p-3 border border-gray-300">Region</th>
-            <th className="p-3 border border-gray-300">Sales</th>
-            <th className="p-3 border border-gray-300">Units Sold</th>
+            {selectedMetrics?.map((mat, index) => (
+              <th key={index}>{mat}</th>
+            ))}
           </tr>
         </thead>
 
@@ -32,29 +31,20 @@ const DataTable = ({ data }) => {
           ) : (
             data?.map((d, index) => (
               <tr
-                key={d.id}
+                key={index}
                 className=" dark:even:border-y-gray-800 hover:bg-blue-100 dark:hover:bg-gray-800 transition duration-200"
               >
                 <td className="p-3 border border-gray-300 text-center dark:text-white">
                   {index + 1}
                 </td>
-                <td className="p-3 border border-gray-300 dark:border-gray-50 dark:text-white">
-                  {d.category}
-                </td>
-                <td className="p-3 border border-gray-300 dark:text-white">
-                  {d.date}
-                </td>
-                <td className="p-3 border border-gray-300 dark:text-white">
-                  {d.product}
-                </td>
-                <td className="p-3 border border-gray-300 dark:text-white">
-                  {d.region}
-                </td>
-                <td className="p-3 border border-gray-300 dark:text-white text-right">
-                  ${d.sales.toLocaleString()}
+                <td className="p-3 border border-gray-300  dark:border-gray-50 dark:text-white">
+                  {d?.metric}
                 </td>
                 <td className="p-3 border border-gray-300 text-center dark:text-white">
-                  {d.units_sold}
+                  {d?.sales_sum}
+                </td>
+                <td className="p-3 border border-gray-300 text-center dark:text-white">
+                  {d?.units_sold_sum}
                 </td>
               </tr>
             ))

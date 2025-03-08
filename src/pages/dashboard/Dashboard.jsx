@@ -1,15 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import DataTable from "./DataTable";
 import DataChart from "./DataChart";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  const [dataVisibleType, setDataVisibleType] = useState("chart");
 
   //   Selected
   const [startDate, setStartDate] = useState("");
@@ -143,21 +140,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white m-3 rounded-md p-2">
-        {["chart", "table"].map((key, index) => (
-          <button
-            key={index}
-            className={` first:rounded-tl-md flex-1 p-3 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
-              dataVisibleType === key
-                ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
-                : ""
-            }`}
-            onClick={() => setDataVisibleType(key)}
-          >
-            {key.charAt(0).toUpperCase() + key.slice(1)}
-          </button>
-        ))}
-      </div>
       {loading ? (
         <div className="flex justify-center p-3">Loading Data....</div>
       ) : data.length === 0 ? (
@@ -168,8 +150,7 @@ const Dashboard = () => {
         )
       ) : (
         <>
-          {dataVisibleType === "table" && <DataTable data={filteredData} />}
-          {dataVisibleType === "chart" && <DataChart data={filteredData} />}
+          <DataChart data={filteredData} />
         </>
       )}
     </div>

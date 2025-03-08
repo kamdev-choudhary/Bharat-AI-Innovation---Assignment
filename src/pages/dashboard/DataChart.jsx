@@ -3,6 +3,7 @@ import { CancelRounded } from "@mui/icons-material";
 import BarChart from "./charts/BarChart";
 import LineAndAreaChart from "./charts/LineAndAreaChart";
 import PieChart from "./charts/PieChart";
+import DataTable from "./DataTable";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -16,6 +17,8 @@ const DataChart = ({ data }) => {
   const [selectedChartType, setSelectedChartType] = useState(chartTypes[0]);
   const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [selectedDimentions, setSelectedDimentions] = useState([]);
+
+  const [dataVisibleType, setDataVisibleType] = useState("chart");
 
   const groupedData = useMemo(() => {
     if (selectedDimentions.length === 0) {
@@ -83,27 +86,48 @@ const DataChart = ({ data }) => {
 
   return (
     <div className="p-3">
-      {/* Chart Type Selection Buttons */}
-      <div className="dark:text-white w-fit border rounded-md ">
-        {chartTypes?.map((type, index) => (
-          <button
-            className={`${
-              type === selectedChartType
-                ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
-                : ""
-            } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
-            key={index}
-            onClick={() => setSelectedChartType(type)}
-          >
-            {type.charAt(0).toUpperCase() + type.slice(1)}
-          </button>
-        ))}
-      </div>
-
       {/* Render Selected Chart */}
       <div className="mt-5 flex flex-wrap w-full">
         <div className="flex-1 justify-start min-w-80">
-          {groupedData.length > 0 && RenderElement[selectedChartType]}
+          <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white  rounded-md mb-2">
+            {["chart", "table"].map((key, index) => (
+              <button
+                key={index}
+                className={` first:rounded-tl-md flex-1 p-2 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
+                  dataVisibleType === key
+                    ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
+                    : ""
+                }`}
+                onClick={() => setDataVisibleType(key)}
+              >
+                {key.charAt(0).toUpperCase() + key.slice(1)}
+              </button>
+            ))}
+          </div>
+          {/* Chart Type Selection Buttons */}
+
+          {dataVisibleType === "chart" ? (
+            <>
+              <div className="dark:text-white w-fit border rounded-md ">
+                {chartTypes?.map((type, index) => (
+                  <button
+                    className={`${
+                      type === selectedChartType
+                        ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
+                        : ""
+                    } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
+                    key={index}
+                    onClick={() => setSelectedChartType(type)}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+              {RenderElement[selectedChartType]}
+            </>
+          ) : (
+            <DataTable data={groupedData} selectedMetrics={selectedMetrics} />
+          )}
         </div>
 
         <div className="flex-1 p-2 flex flex-col w-[100%] gap-4">
