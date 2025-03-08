@@ -75,7 +75,7 @@ const Dashboard = () => {
       <div className="container mx-auto">
         <div className="w-full flex justify-end">
           <button
-            className="cursor-pointer bg-blue-800 p-2 rounded-3xl px-10 mt-1 dark:bg-blue-400 text-white"
+            className="cursor-pointer bg-blue-800 p-2 rounded-3xl px-10 mt-3 mr-3 dark:bg-blue-400 text-white"
             onClick={() =>
               captureElement({
                 elementId: "chart",
