@@ -83,7 +83,7 @@ const DataChart = ({ data }) => {
 
       {/* Render Selected Chart */}
       <div className="mt-5 flex flex-wrap w-full">
-        <div className="flex-1 justify-start maz-w-80">
+        <div className="flex-1 justify-start min-w-80">
           <ResponsiveContainer width="100%" height={300}>
             {selectedChartType === "bar" && (
               <BarChart data={groupedData}>
