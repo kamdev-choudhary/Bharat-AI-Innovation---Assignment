@@ -28,8 +28,22 @@ export const GlobalProvider = ({ children }) => {
       "theme",
       document.documentElement.classList.contains("dark") ? "dark" : "light"
     );
-    console.log("mode");
   };
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme && storedTheme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      const isDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+    // }
+  }, []);
 
   return (
     <GlobalContext.Provider

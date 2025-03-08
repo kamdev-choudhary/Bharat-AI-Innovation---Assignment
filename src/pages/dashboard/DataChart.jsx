@@ -1,25 +1,11 @@
 import React, { useMemo, useState } from "react";
-import {
-  Bar,
-  BarChart,
-  Line,
-  LineChart,
-  Area,
-  AreaChart,
-  Pie,
-  PieChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Cell,
-} from "recharts";
 import { CancelRounded } from "@mui/icons-material";
+import BarChart from "./charts/BarChart";
+import LineChart from "./charts/LineChart";
+import AreaChart from "./charts/AreaChart";
+import PieChart from "./charts/PieChart";
 
-const chartTypes = ["bar", "line", "area", "pie"];
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]; // Colors for PieChart
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const metrics = ["sales", "units_sold"];
 
@@ -32,7 +18,6 @@ const DataChart = ({ data }) => {
 
   const groupedData = useMemo(() => {
     if (selectedDimentions.length === 0) {
-      // No dimensions selected, compute total sum for each metric
       const summary = selectedMatrics.reduce((acc, mat) => {
         acc[`${mat}_sum`] = data.reduce(
           (sum, item) => sum + (item[mat] || 0),
@@ -66,7 +51,7 @@ const DataChart = ({ data }) => {
     <div className="p-3">
       {/* Chart Type Selection Buttons */}
       <div className="dark:text-white w-fit border rounded-md ">
-        {chartTypes?.map((type, index) => (
+        {["bar", "line", "area", "pie"]?.map((type, index) => (
           <button
             className={`${
               type === selectedChartType
@@ -76,7 +61,7 @@ const DataChart = ({ data }) => {
             key={index}
             onClick={() => setSelectedChartType(type)}
           >
-            {type}
+            {type.charAt(0).toUpperCase() + type.slice(1)}
           </button>
         ))}
       </div>
@@ -84,95 +69,38 @@ const DataChart = ({ data }) => {
       {/* Render Selected Chart */}
       <div className="mt-5 flex flex-wrap w-full">
         <div className="flex-1 justify-start min-w-80">
-          <ResponsiveContainer width="100%" height={300}>
-            {selectedChartType === "bar" && (
-              <BarChart data={groupedData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="metric"
-                  angle={groupedData.length > 5 ? -30 : 0}
-                />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {selectedMatrics?.map((mat, index) => (
-                  <Bar
-                    key={index}
-                    dataKey={`${mat}_sum`}
-                    fill={COLORS[index]}
-                  />
-                ))}
-              </BarChart>
-            )}
+          {selectedChartType === "bar" && (
+            <BarChart
+              groupedData={groupedData}
+              selectedMatrics={selectedMatrics}
+              COLORS={COLORS}
+            />
+          )}
 
-            {selectedChartType === "line" && groupedData.length > 0 && (
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={groupedData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis
-                    dataKey="metric"
-                    tick={{ fontSize: 12 }}
-                    angle={-30}
-                    textAnchor="end"
-                  />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  {selectedMatrics?.map((mat, index) => (
-                    <Line
-                      key={index}
-                      type="monotone"
-                      dataKey={`${mat}_sum`}
-                      stroke={COLORS[index % COLORS.length]}
-                      strokeWidth={2}
-                      dot={{ r: 4 }}
-                      activeDot={{ r: 6 }}
-                    />
-                  ))}
-                </LineChart>
-              </ResponsiveContainer>
-            )}
+          {selectedChartType === "line" && groupedData.length > 0 && (
+            <LineChart
+              groupedData={groupedData}
+              selectedMatrics={selectedMatrics}
+              COLORS={COLORS}
+            />
+          )}
 
-            {selectedChartType === "area" && (
-              <AreaChart data={groupedData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="metric" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                {selectedMatrics?.map((mat, index) => (
-                  <Area
-                    type="monotone"
-                    dataKey={`${mat}_sum`}
-                    fill="#8884d8"
-                    stroke="#8884d8"
-                  />
-                ))}
-              </AreaChart>
-            )}
+          {selectedChartType === "area" && (
+            <LineChart
+              groupedData={groupedData}
+              selectedMatrics={selectedMatrics}
+              fill={"origin"}
+              COLORS={COLORS}
+            />
+          )}
 
-            {selectedChartType === "pie" && selectedMatrics.length > 0 && (
-              <PieChart>
-                <Pie
-                  data={groupedData}
-                  dataKey={`${selectedMatrics[0]}_sum`}
-                  nameKey="metric"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  label
-                >
-                  {groupedData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            )}
-          </ResponsiveContainer>
+          {selectedChartType === "pie" && selectedMatrics.length > 0 && (
+            <PieChart
+              groupedData={groupedData}
+              selectedMatrics={selectedMatrics}
+              COLORS={COLORS}
+            />
+          )}
         </div>
         <div className="flex-1 p-2 flex flex-col w-[100%] gap-4">
           <div className="w-full ">

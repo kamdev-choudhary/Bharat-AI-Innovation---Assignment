@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import DataTable from "./components/DataTable";
-import DataChart from "./components/DataChart";
+import DataTable from "./DataTable";
+import DataChart from "./DataChart";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -140,6 +140,7 @@ const Dashboard = () => {
       <div className="flex  justify-between bg-gray-600 dark:bg-gray-600 text-white m-3 rounded-md">
         {["chart", "table"].map((key, index) => (
           <button
+            key={index}
             className={` first:rounded-tl-md flex-1 p-3 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
               dataVisibleType === key
                 ? "bg-black font-bold dark:bg-gray-800"
