@@ -22,12 +22,12 @@ ChartJS.register(
 
 const COLORS = ["#FFBB28", "#0088FE", "#00C49F", "#FF8042"];
 
-const BarChart = ({ groupedData, selectedMatrics }) => {
+const BarChart = ({ groupedData, selectedMetrics }) => {
   const data = useMemo(() => {
     if (!groupedData || groupedData.length === 0) return null;
     return {
-      labels: groupedData.map((item) => item.metric), // Extract category labels
-      datasets: selectedMatrics.map((mat, index) => ({
+      labels: groupedData?.map((item) => item.metric), // Extract category labels
+      datasets: selectedMetrics.map((mat, index) => ({
         label: `${mat} Sum`,
         data: groupedData.map((item) => item[`${mat}_sum`] || 0), // Extract values for each metric
         backgroundColor: COLORS[index],
@@ -36,7 +36,7 @@ const BarChart = ({ groupedData, selectedMatrics }) => {
         fill: true,
       })),
     };
-  }, [groupedData, selectedMatrics]);
+  }, [groupedData, selectedMetrics]);
 
   const options = {
     responsive: true,

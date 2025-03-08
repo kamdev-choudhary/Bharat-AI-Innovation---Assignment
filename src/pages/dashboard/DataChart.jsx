@@ -1,24 +1,23 @@
 import React, { useMemo, useState } from "react";
 import { CancelRounded } from "@mui/icons-material";
 import BarChart from "./charts/BarChart";
-import LineChart from "./charts/LineChart";
-import AreaChart from "./charts/AreaChart";
+import LineAndAreaChart from "./charts/LineAndAreaChart";
 import PieChart from "./charts/PieChart";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const metrics = ["sales", "units_sold"];
 
-const dimension = ["product", "category", "region", "date"];
+const dimentions = ["product", "category", "region", "date"];
 
 const DataChart = ({ data }) => {
   const [selectedChartType, setSelectedChartType] = useState("bar");
-  const [selectedMatrics, setSelectedMatrics] = useState([]);
+  const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [selectedDimentions, setSelectedDimentions] = useState([]);
 
   const groupedData = useMemo(() => {
     if (selectedDimentions.length === 0) {
-      const summary = selectedMatrics.reduce((acc, mat) => {
+      const summary = selectedMetrics.reduce((acc, mat) => {
         acc[`${mat}_sum`] = data.reduce(
           (sum, item) => sum + (item[mat] || 0),
           0
@@ -36,7 +35,8 @@ const DataChart = ({ data }) => {
           group = { metric: key };
           acc.push(group);
         }
-        selectedMatrics.forEach((mat) => {
+
+        selectedMetrics.forEach((mat) => {
           group[`${mat}_sum`] = (group[`${mat}_sum`] || 0) + (item[mat] || 0);
         });
 
@@ -45,7 +45,39 @@ const DataChart = ({ data }) => {
 
       return grouped;
     }
-  }, [selectedDimentions, selectedMatrics, data]);
+  }, [selectedDimentions, selectedMetrics, data]);
+
+  const RenderElement = {
+    bar: (
+      <BarChart
+        groupedData={groupedData}
+        selectedMetrics={selectedMetrics}
+        COLORS={COLORS}
+      />
+    ),
+    line: (
+      <LineAndAreaChart
+        groupedData={groupedData}
+        selectedMetrics={selectedMetrics}
+        COLORS={COLORS}
+      />
+    ),
+    area: (
+      <LineAndAreaChart
+        groupedData={groupedData}
+        selectedMetrics={selectedMetrics}
+        COLORS={COLORS}
+        fill
+      />
+    ),
+    pie: (
+      <PieChart
+        groupedData={groupedData}
+        selectedMetrics={selectedMetrics}
+        COLORS={COLORS}
+      />
+    ),
+  };
 
   return (
     <div className="p-3">
@@ -69,49 +101,19 @@ const DataChart = ({ data }) => {
       {/* Render Selected Chart */}
       <div className="mt-5 flex flex-wrap w-full">
         <div className="flex-1 justify-start min-w-80">
-          {selectedChartType === "bar" && (
-            <BarChart
-              groupedData={groupedData}
-              selectedMatrics={selectedMatrics}
-              COLORS={COLORS}
-            />
-          )}
-
-          {selectedChartType === "line" && groupedData.length > 0 && (
-            <LineChart
-              groupedData={groupedData}
-              selectedMatrics={selectedMatrics}
-              COLORS={COLORS}
-            />
-          )}
-
-          {selectedChartType === "area" && (
-            <LineChart
-              groupedData={groupedData}
-              selectedMatrics={selectedMatrics}
-              fill={"origin"}
-              COLORS={COLORS}
-            />
-          )}
-
-          {selectedChartType === "pie" && selectedMatrics.length > 0 && (
-            <PieChart
-              groupedData={groupedData}
-              selectedMatrics={selectedMatrics}
-              COLORS={COLORS}
-            />
-          )}
+          {groupedData.length > 0 && RenderElement[selectedChartType]}
         </div>
+
         <div className="flex-1 p-2 flex flex-col w-[100%] gap-4">
           <div className="w-full ">
             <p className="dark:text-white">Metrics</p>
             <div className="border dark:border-gray-50 p-1 rounded-md w-full h-auto">
-              {selectedMatrics?.map((m) => (
+              {selectedMetrics?.map((m) => (
                 <div className="p-2 flex gap-4 dark:text-white" key={m}>
                   <p>{m}</p>
                   <CancelRounded
                     onClick={() =>
-                      setSelectedMatrics((matrics) =>
+                      setSelectedMetrics((matrics) =>
                         matrics.filter((mat) => mat !== m)
                       )
                     }
@@ -123,9 +125,9 @@ const DataChart = ({ data }) => {
               <select
                 onChange={(e) => {
                   const value = e.target.value;
-                  const index = selectedMatrics.indexOf(value);
+                  const index = selectedMetrics.indexOf(value);
                   if (index === -1) {
-                    setSelectedMatrics((matrics) => [...matrics, value]);
+                    setSelectedMetrics((matrics) => [...matrics, value]);
                   }
                 }}
                 value=""
@@ -133,10 +135,9 @@ const DataChart = ({ data }) => {
               >
                 <option className="dark:bg-gray-950 dark:text-white " value="">
                   Select Metrics
-                </option>{" "}
-                {/* Placeholder */}
+                </option>
                 {metrics
-                  ?.filter((mat) => !selectedMatrics.includes(mat))
+                  ?.filter((mat) => !selectedMetrics.includes(mat))
                   .map((m, index) => (
                     <option key={index} value={m}>
                       {m}
@@ -153,8 +154,8 @@ const DataChart = ({ data }) => {
                   <p>{d}</p>
                   <CancelRounded
                     onClick={() =>
-                      setSelectedDimentions((dimension) =>
-                        dimension?.filter((dim) => dim !== d)
+                      setSelectedDimentions((dimention) =>
+                        dimention?.filter((dim) => dim !== d)
                       )
                     }
                     size={20}
@@ -167,18 +168,18 @@ const DataChart = ({ data }) => {
                   const value = e.target.value;
                   const index = selectedDimentions.indexOf(value);
                   if (index === -1) {
-                    setSelectedDimentions((dimension) => [...dimension, value]);
+                    setSelectedDimentions((dimention) => [...dimention, value]);
                   }
                 }}
                 value=""
                 className="w-fit border rounded px-2 py-1 dark:bg-gray-900 dark:text-white"
               >
                 <option value="">Select Dimention</option> {/* Placeholder */}
-                {dimension
-                  ?.filter((dim) => !selectedDimentions.includes(dim))
+                {dimentions
+                  ?.filter((dim) => !selectedDimentions?.includes(dim))
                   .map((d, index) => (
                     <option key={index} value={d}>
-                      {d}
+                      {d?.charAt(0) + d.slice(1)}
                     </option>
                   ))}
               </select>

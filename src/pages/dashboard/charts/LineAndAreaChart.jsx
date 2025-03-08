@@ -23,17 +23,17 @@ ChartJS.register(
   Filler
 );
 
-const LineChart = ({ selectedMatrics, groupedData, fill, COLORS }) => {
+const LineAndAreaChart = ({ selectedMetrics, groupedData, fill, COLORS }) => {
   const data = useMemo(() => {
     if (!groupedData || groupedData.length === 0) return null;
 
     return {
-      labels: groupedData.map((data) => data.metric),
-      datasets: selectedMatrics.map((mat, index) => {
+      labels: groupedData?.map((data) => data.metric),
+      datasets: selectedMetrics?.map((mat, index) => {
         const color = COLORS[index % COLORS.length];
         return {
           label: `${mat} Sum`,
-          data: groupedData.map((data) => data[`${mat}_sum`] || 0),
+          data: groupedData?.map((data) => data[`${mat}_sum`] || 0),
           backgroundColor: fill ? `${color}40` : "transparent",
           borderColor: color,
           fill: fill,
@@ -42,9 +42,7 @@ const LineChart = ({ selectedMatrics, groupedData, fill, COLORS }) => {
         };
       }),
     };
-  }, [groupedData, selectedMatrics, fill]);
-
-  console.log(data);
+  }, [groupedData, selectedMetrics, fill]);
 
   const options = {
     responsive: true,
@@ -57,11 +55,7 @@ const LineChart = ({ selectedMatrics, groupedData, fill, COLORS }) => {
     },
   };
 
-  return data ? (
-    <Line options={options} data={data} />
-  ) : (
-    <p>No data available</p>
-  );
+  return <Line options={options} data={data} />;
 };
 
-export default LineChart;
+export default LineAndAreaChart;
