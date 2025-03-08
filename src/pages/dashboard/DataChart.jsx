@@ -10,14 +10,16 @@ const metrics = ["sales", "units_sold"];
 
 const dimentions = ["product", "category", "region", "date"];
 
+const chartTypes = ["bar", "line", "area", "pie"];
+
 const DataChart = ({ data }) => {
-  const [selectedChartType, setSelectedChartType] = useState("bar");
+  const [selectedChartType, setSelectedChartType] = useState(chartTypes[0]);
   const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [selectedDimentions, setSelectedDimentions] = useState([]);
 
   const groupedData = useMemo(() => {
     if (selectedDimentions.length === 0) {
-      const summary = selectedMetrics.reduce((acc, mat) => {
+      const summary = selectedMetrics?.reduce((acc, mat) => {
         acc[`${mat}_sum`] = data.reduce(
           (sum, item) => sum + (item[mat] || 0),
           0
@@ -83,7 +85,7 @@ const DataChart = ({ data }) => {
     <div className="p-3">
       {/* Chart Type Selection Buttons */}
       <div className="dark:text-white w-fit border rounded-md ">
-        {["bar", "line", "area", "pie"]?.map((type, index) => (
+        {chartTypes?.map((type, index) => (
           <button
             className={`${
               type === selectedChartType
