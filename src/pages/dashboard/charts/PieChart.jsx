@@ -9,9 +9,9 @@ const PieChart = ({ selectedMetrics, groupedData, COLORS }) => {
     if (!groupedData || groupedData.length === 0) return null;
     return {
       labels: groupedData?.map((d) => d?.metric),
-      datasets: selectedMetrics?.map((mat, index) => ({
+      datasets: selectedMetrics?.map((mat) => ({
         data: groupedData?.map((d) => d[`${mat}_sum`] || 0),
-        backgroundColor: COLORS[index % COLORS.length],
+        backgroundColor: groupedData.map((_, i) => COLORS[i % COLORS.length]),
         hoverOffset: 4,
       })),
     };
@@ -24,7 +24,8 @@ const PieChart = ({ selectedMetrics, groupedData, COLORS }) => {
       title: { display: true, text: "Pie Chart" },
     },
   };
-  return <Pie data={data} options={options} />;
+
+  return data ? <Pie data={data} options={options} /> : null;
 };
 
 export default PieChart;

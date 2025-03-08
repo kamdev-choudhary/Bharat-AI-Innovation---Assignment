@@ -49,11 +49,7 @@ const BarChart = ({ groupedData, selectedMetrics }) => {
     },
   };
 
-  return data ? (
-    <Bar data={data} options={options} />
-  ) : (
-    <p>No data available</p>
-  );
+  return data ? <Bar data={data} options={options} /> : null;
 };
 
 export default BarChart;

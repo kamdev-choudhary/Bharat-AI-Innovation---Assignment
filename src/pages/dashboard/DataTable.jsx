@@ -1,7 +1,6 @@
 import React from "react";
 
 const DataTable = ({ data, selectedMetrics }) => {
-  console.log(data);
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full border-collapse border border-gray-300 shadow-md rounded-lg">
@@ -12,9 +11,9 @@ const DataTable = ({ data, selectedMetrics }) => {
             <th className="p-3 border border-gray-300">Category</th>
             {selectedMetrics?.map((mat, index) => (
               <th key={index}>
-                {mat
-                  ?.split("_")
-                  ?.map((m) => m?.charAt(0).toUpperCase() + m?.slice(1))}
+                {mat?.split("_")?.map((m) => {
+                  return m?.charAt(0).toUpperCase() + m?.slice(1) + " ";
+                })}
               </th>
             ))}
           </tr>
@@ -44,12 +43,11 @@ const DataTable = ({ data, selectedMetrics }) => {
                 <td className="p-3 border border-gray-300  dark:border-gray-50 dark:text-white">
                   {d?.metric}
                 </td>
-                <td className="p-3 border border-gray-300 text-center dark:text-white">
-                  {d?.sales_sum}
-                </td>
-                <td className="p-3 border border-gray-300 text-center dark:text-white">
-                  {d?.units_sold_sum}
-                </td>
+                {selectedMetrics?.map((mat) => (
+                  <td className="p-3 border border-gray-300 text-center dark:text-white">
+                    {d?.[`${mat}_sum`]}
+                  </td>
+                ))}
               </tr>
             ))
           )}

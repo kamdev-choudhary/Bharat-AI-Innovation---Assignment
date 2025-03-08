@@ -98,6 +98,7 @@ const Dashboard = () => {
             placeholder="End Date"
           />
         </div>
+
         <div className="flex flex-col">
           <label htmlFor="category" className="dark:text-white">
             Category
@@ -118,6 +119,7 @@ const Dashboard = () => {
             ))}
           </select>
         </div>
+
         <div className="flex flex-col">
           <label htmlFor="region" className="dark:text-white">
             Region

@@ -28,19 +28,19 @@ const LineAndAreaChart = ({ selectedMetrics, groupedData, fill, COLORS }) => {
     if (!groupedData || groupedData.length === 0) return null;
 
     return {
-      labels: groupedData?.map((data) => data.metric),
-      datasets: selectedMetrics?.map((mat, index) => {
-        const color = COLORS[index % COLORS.length];
-        return {
-          label: `${mat} Sum`,
-          data: groupedData?.map((data) => data[`${mat}_sum`] || 0),
-          backgroundColor: fill ? `${color}40` : "transparent",
-          borderColor: color,
-          fill: fill,
-          borderWidth: 2,
-          tension: 0.4,
-        };
-      }),
+      labels: groupedData?.map((data) => data?.metric) || [],
+      datasets:
+        selectedMetrics?.map((mat, index) => {
+          const color = COLORS[index % COLORS.length];
+          return {
+            label: `${mat} Sum`,
+            data: groupedData?.map((data) => data[`${mat}_sum`] || 0),
+            backgroundColor: fill ? `${color}40` : "transparent",
+            borderColor: color,
+            fill: fill,
+            borderWidth: 2,
+          };
+        }) || [],
     };
   }, [groupedData, selectedMetrics, fill]);
 
@@ -55,7 +55,7 @@ const LineAndAreaChart = ({ selectedMetrics, groupedData, fill, COLORS }) => {
     },
   };
 
-  return <Line options={options} data={data} />;
+  return data ? <Line options={options} data={data} /> : null;
 };
 
 export default LineAndAreaChart;

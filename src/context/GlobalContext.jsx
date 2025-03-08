@@ -4,6 +4,7 @@ const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [theme, setTheme] = useState("");
 
   const loginWebsite = () => {
     localStorage.setItem("token", "123");
@@ -24,25 +25,21 @@ export const GlobalProvider = ({ children }) => {
 
   const toggleDarkMode = () => {
     document.documentElement.classList.toggle("dark");
-    localStorage.setItem(
-      "theme",
-      document.documentElement.classList.contains("dark") ? "dark" : "light"
-    );
+    const newTheme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
   };
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme && storedTheme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      const isDark = window.matchMedia("(prefers-color-scheme:dark)").matches;
-      if (isDark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    }
-    // }
+    const storedTheme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+    document.documentElement.classList.toggle("dark", storedTheme === "dark");
+    setTheme(storedTheme);
   }, []);
 
   return (
@@ -53,6 +50,7 @@ export const GlobalProvider = ({ children }) => {
         loginWebsite,
         logoutWebsite,
         toggleDarkMode,
+        theme,
       }}
     >
       {children}
