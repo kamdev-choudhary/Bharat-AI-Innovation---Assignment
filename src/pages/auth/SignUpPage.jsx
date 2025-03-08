@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext";
 
-const LoginPage = () => {
+const SignUpPage = () => {
   const { loginWebsite } = useGlobalContext();
   const [userId, setuserId] = useState("");
   const [password, setPassword] = useState("");
@@ -10,14 +10,11 @@ const LoginPage = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleRegisterAndLogin = (e) => {
     try {
       setLoading(true);
-
-      if (userId === "admin" && password === "admin") {
+      if (userId.length > 0 && password.length > 0) {
         loginWebsite();
-      } else {
-        setError("ID or Password Incorrect.");
       }
       e.preventDefault();
     } catch (error) {
@@ -32,11 +29,11 @@ const LoginPage = () => {
   return (
     <div className="flex justify-center w-[100vw]  h-[100vh] items-center">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegisterAndLogin}
         className="bg-[#f1f3fb] dark:bg-gray-600 h-auto p-4 rounded-2xl max-w-90 w-full gap-4 flex flex-col py-10"
       >
         <div className="flex justify-center">
-          <p className="text-2xl dark:text-white">Login Page</p>
+          <p className="text-2xl dark:text-white">Sign up</p>
         </div>
         <hr className="border-gray-400" />
         <input
@@ -81,16 +78,16 @@ const LoginPage = () => {
           } p-2 rounded-4xl hover:${
             loading ? "bg-gray-400" : "bg-amber-700"
           } text-white cursor-pointer`}
-          onClick={handleLogin}
+          onClick={handleRegisterAndLogin}
           type="submit"
           disabled={loading}
         >
-          Login
+          Signup and Login
         </button>
         <div className="flex justify-center dark:text-white">
-          Don't have an account &nbsp;{" "}
-          <a href="/sign-up" className="underline">
-            Sign up.
+          Already have an account &nbsp;{" "}
+          <a href="/login" className="underline">
+            Login.
           </a>
         </div>
       </form>
@@ -98,4 +95,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

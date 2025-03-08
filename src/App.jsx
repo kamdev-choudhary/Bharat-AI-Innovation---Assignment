@@ -7,6 +7,7 @@ import {
 import Dashboard from "./pages/dashboard/Dashboard";
 import { useGlobalContext } from "./context/GlobalContext";
 import LoginPage from "./pages/auth/LoginPage";
+import SignUpPage from "./pages/auth/SignUpPage";
 
 function App() {
   const { isLoggedIn } = useGlobalContext();
@@ -22,6 +23,7 @@ function App() {
           ) : (
             <>
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/sign-up" element={<SignUpPage />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             </>
           )}

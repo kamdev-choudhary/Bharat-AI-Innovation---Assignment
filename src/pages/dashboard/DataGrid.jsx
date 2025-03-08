@@ -5,6 +5,7 @@ import LineAndAreaChart from "./charts/LineAndAreaChart";
 import PieChart from "./charts/PieChart";
 import DataTable from "./DataTable";
 import { AnimatePresence, motion } from "framer-motion";
+import { captureElement } from "../../utils/captureAsPNG";
 
 const COLORS = [
   "#0088FE",
@@ -186,20 +187,34 @@ const DataGrid = ({ data }) => {
               {/* Chart Type Selector Buttons */}
               {dataVisibleType === "chart" ? (
                 <>
-                  <div className="dark:text-white w-fit border rounded-md ">
-                    {chartTypes?.map((type, index) => (
-                      <button
-                        className={`${
-                          type === selectedChartType
-                            ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
-                            : ""
-                        } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
-                        key={index}
-                        onClick={() => setSelectedChartType(type)}
-                      >
-                        {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
-                      </button>
-                    ))}
+                  <div className="flex justify-between w-full">
+                    <div className="dark:text-white w-fit border rounded-md ">
+                      {chartTypes?.map((type, index) => (
+                        <button
+                          className={`${
+                            type === selectedChartType
+                              ? " border-gray-900  bg-purple-500 dark:bg-purple-950 text-white"
+                              : ""
+                          } p-2 transition-all min-w-20 border-r-1 first:rounded-tl-md first:rounded-bl-md last:rounded-br-md last:rounded-tr-md last:border-r-0 cursor-pointer`}
+                          key={index}
+                          onClick={() => setSelectedChartType(type)}
+                        >
+                          {type?.charAt(0)?.toUpperCase() + type?.slice(1)}
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      className="cursor-pointer bg-blue-800 p-2 rounded-3xl px-10 dark:bg-blue-400 text-white"
+                      onClick={() =>
+                        captureElement({
+                          elementId: "chart",
+                          download: true,
+                          format: "pdf",
+                        })
+                      }
+                    >
+                      Download Chart
+                    </button>
                   </div>
                   <div id="chart">
                     <AnimatePresence mode="wait">

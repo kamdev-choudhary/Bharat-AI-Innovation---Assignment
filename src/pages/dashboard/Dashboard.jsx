@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
 import DataGrid from "./DataGrid";
-import { captureElement } from "../../utils/captureAsPNG";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -73,21 +72,7 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className="container mx-auto">
-        <div className="w-full flex justify-end">
-          <button
-            className="cursor-pointer bg-blue-800 p-2 rounded-3xl px-10 mt-3 mr-3 dark:bg-blue-400 text-white"
-            onClick={() =>
-              captureElement({
-                elementId: "chart",
-                download: true,
-                format: "pdf",
-              })
-            }
-          >
-            Download Chart
-          </button>
-        </div>
-        <div className=" flex gap-2 flex-wrap px-3 pt-3 w-full">
+        <div className="flex gap-2 flex-wrap px-3 pt-3 w-full">
           <div className="flex flex-col flex-grow">
             <label htmlFor="endDate" className="dark:text-white">
               Start Date
@@ -96,7 +81,7 @@ const Dashboard = () => {
               placeholder="Select Start Date"
               type="date"
               value={startDate}
-              className="min-w-80 w-full border p-2 rounded-md   dark:text-white border-gray-400 dark:border-gray-100 flex-1 scroll-smooth"
+              className="min-w-65 w-full border p-2 rounded-md   dark:text-white border-gray-400 dark:border-gray-100 flex-1 scroll-smooth"
               onChange={(e) => setStartDate(e.target.value)}
             />
           </div>
@@ -106,7 +91,7 @@ const Dashboard = () => {
               End Date
             </label>
             <input
-              className="min-w-80 w-full border p-2 rounded-md dark:border-gray-50 dark:text-white border-gray-400 flex-1 scroll-smooth"
+              className="min-w-65 w-full border p-2 rounded-md dark:border-gray-50 dark:text-white border-gray-400 flex-1 scroll-smooth"
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
@@ -120,7 +105,7 @@ const Dashboard = () => {
               Category
             </label>
             <select
-              className="min-w-80 border p-2 rounded-md dark:border-gray-50 dark:text-white border-gray-400 flex-1 scroll-smooth"
+              className="min-w-65 border p-2 rounded-md dark:border-gray-50 dark:text-white border-gray-400 flex-1 scroll-smooth"
               id="category"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
@@ -146,7 +131,7 @@ const Dashboard = () => {
             </label>
 
             <select
-              className="min-w-80 border p-2 rounded-md dark:text-white border-gray-400 flex-1 scroll-smooth"
+              className="min-w-65 border p-2 rounded-md dark:text-white border-gray-400 flex-1 scroll-smooth"
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
               id="region"
