@@ -13,7 +13,7 @@ const dimentions = ["product", "category", "region", "date"];
 
 const chartTypes = ["bar", "line", "area", "pie"];
 
-const DataChart = ({ data }) => {
+const DataGrid = ({ data }) => {
   const [selectedChartType, setSelectedChartType] = useState(chartTypes[0]);
   const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [selectedDimentions, setSelectedDimentions] = useState([]);
@@ -93,7 +93,7 @@ const DataChart = ({ data }) => {
             {["chart", "table"].map((key, index) => (
               <button
                 key={index}
-                className={` first:rounded-tl-md flex-1 p-2 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
+                className={`first:rounded-tl-md flex-1 p-2 last:rounded-tr-md last:rounded-br-md first:rounded-bl-md text-center cursor-pointer ${
                   dataVisibleType === key
                     ? "bg-gray-800 font-bold dark:bg-gray-800 rounded-md"
                     : ""
@@ -217,4 +217,4 @@ const DataChart = ({ data }) => {
   );
 };
 
-export default DataChart;
+export default DataGrid;

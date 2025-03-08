@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
-import DataChart from "./DataChart";
+import DataGrid from "./DataGrid";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -47,6 +47,7 @@ const Dashboard = () => {
 
   const filteredData = useMemo(() => {
     if (!data) return [];
+
     const selectedStartDate = startDate
       ? new Date(startDate).setHours(0, 0, 0, 0)
       : null;
@@ -150,7 +151,7 @@ const Dashboard = () => {
         )
       ) : (
         <>
-          <DataChart data={filteredData} />
+          <DataGrid data={filteredData} />
         </>
       )}
     </div>

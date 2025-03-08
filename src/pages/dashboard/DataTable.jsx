@@ -11,7 +11,11 @@ const DataTable = ({ data, selectedMetrics }) => {
             <th className="p-3 border border-gray-300">SN</th>
             <th className="p-3 border border-gray-300">Category</th>
             {selectedMetrics?.map((mat, index) => (
-              <th key={index}>{mat}</th>
+              <th key={index}>
+                {mat
+                  ?.split("_")
+                  ?.map((m) => m?.charAt(0).toUpperCase() + m?.slice(1))}
+              </th>
             ))}
           </tr>
         </thead>
